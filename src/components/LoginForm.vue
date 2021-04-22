@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { loginUser } from '@/api/index';
 import { validateEmail } from '@/utils/validation';
 
 export default {
@@ -54,10 +53,13 @@ export default {
 					username: this.username,
 					password: this.password,
 				};
-				const { data } = await loginUser(userData);
-				console.log(data.token);
-				this.$store.commit('setToken', data.token);
-				this.$store.commit('setUsername', data.user.username);
+				await this.$store.dispatch('LOGIN', userData);
+				// const { data } = await loginUser(userData);
+				// console.log(data.token);
+				// this.$store.commit('setToken', data.token);
+				// this.$store.commit('setUsername', data.user.username);
+				// saveAuthToCookie(data.token);
+				// saveUserToCookie(data.user.username);
 				this.$router.push('/main');
 			} catch (error) {
 				console.log(error.response.data);
