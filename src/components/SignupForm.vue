@@ -23,6 +23,9 @@
 					:disabled="!isUsernameValid || !password || !nickname"
 					type="submit"
 					class="btn"
+					:class="
+						!isUsernameValid || !password || !nickname ? 'disabled' : null
+					"
 				>
 					회원 가입
 				</button>
